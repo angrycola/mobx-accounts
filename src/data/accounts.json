@@ -1,0 +1,11 @@
+[{
+"accountName": "Счет 1",
+"account": "45522344400000000000",
+"amount": 500,
+"currency": "RUB"
+},{
+"accountName": "Счет 2",
+"account": "55643423454334544400",
+"amount": 634,
+"currency": "USD"
+}]
