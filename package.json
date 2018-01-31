@@ -4,7 +4,10 @@
 	"main": "index.js",
 	"license": "MIT",
 	"scripts": {
-		"run:dev": "webpack-dev-server"
+		"run:dev": "webpack-dev-server",
+		"run:build": "webpack -p --env production",
+		"start": "node server/index.js",
+		"heroku-postbuild": "yarn run run:build"
 	},
 	"dependencies": {
 		"babel-cli": "^6.26.0",
@@ -17,6 +20,8 @@
 		"babel-preset-env": "^1.6.1",
 		"babel-preset-react": "^6.24.1",
 		"css-loader": "^0.28.9",
+		"express": "^4.16.2",
+		"extract-text-webpack-plugin": "^3.0.2",
 		"live-server": "^1.2.0",
 		"mobx": "^3.4.1",
 		"mobx-react": "^4.3.5",

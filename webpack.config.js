@@ -1,26 +1,50 @@
 const path = require('path');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-module.exports = {
-	entry: ['babel-polyfill', './src/index.js'],
-	output: {
-		path: path.join(__dirname, 'public'),
-		filename: 'bundle.js'
-	},
-	module: {
-		rules: [
-			{
-				loaders: 'babel-loader',
-				test: /\.js$/,
-				exclude: /node_modules/
-			},
-			{
-				use: ['style-loader', 'css-loader', 'sass-loader'],
-				test: /\.s?css$/
-			}
-		]
-	},
-	devServer: {
-		contentBase: path.join(__dirname, 'public')
-	},
-	devtool: 'cheap-module-eval-source-map'
-};
+
+module.exports = env => {
+	const isProduction = env  === 'production';
+	const CSSExtract = new ExtractTextPlugin('index.css');
+	console.log(env);
+	return {
+		entry: ['babel-polyfill', './src/index.js'],
+		output: {
+			path: path.join(__dirname, 'public'),
+			filename: 'bundle.js'
+		},
+		module: {
+			rules: [
+				{
+					loaders: 'babel-loader',
+					test: /\.js$/,
+					exclude: /node_modules/
+				},
+				{
+					test: /\.s?css$/,
+					use: CSSExtract.extract({
+						use: [
+							{
+								loader: 'css-loader',
+								options: {
+									sourceMap: true
+								}
+							},
+							{
+								loader: 'sass-loader',
+								options: {
+									sourceMap: true
+								}
+							}
+						]
+					})
+				}
+			]
+		},
+		plugins: [ CSSExtract ],
+		devtool: isProduction ? 'source-map' : 'inline-source-map',
+		devServer: {
+			contentBase: path.join(__dirname, 'public'),
+			historyApiFallback: true
+		}
+	};
+}
