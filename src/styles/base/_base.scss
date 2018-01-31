@@ -11,3 +11,11 @@ button {
 		cursor: default;
 	}
 }
+.header {
+	display: flex;
+	justify-content: flex-end;
+}
+.wrapper {
+	width: 80%;
+	margin: 0 auto;
+}

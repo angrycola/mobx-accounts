@@ -10,8 +10,7 @@ const AccountItem = ({ item }) => {
 					<tr>
 						<th>Name</th>
 						<th>Number</th>
-						<th>Amount</th>
-						<th>Currency</th>
+						<th>Amount</th>						
 						<th>Char</th>
 					</tr>
 				</thead>
@@ -20,7 +19,6 @@ const AccountItem = ({ item }) => {
 						<td>{ item.accountName }</td>
 						<td>{ item.account }</td>
 						<td>{ item.amount }</td>
-						<td>{ item.currency }</td>
 						<td>{ item.char }</td>
 					</tr>
 				</tbody>
