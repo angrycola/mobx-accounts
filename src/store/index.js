@@ -1,11 +1,12 @@
 import { autorun, computed, observable, action, runInAction } from 'mobx';
 import accounts from '../data/accounts.json';
 import notes from '../data/notes.json';
+import history from '../routes/history.js'
 
 
 const checkAuth = () => {
 		const json = localStorage.getItem('user');
-		const res = JSON.parse(json);
+		const res = JSON.parse(json);		
 		return res || false;
 };
 
@@ -100,4 +101,7 @@ class Store {
 const store = new Store;
 export default store;
 
-autorun(() => store.user.id ? store.fetchNotes() : null);
+autorun(() => {
+	history.push('/');
+	if(store.user.id) store.fetchNotes();
+});

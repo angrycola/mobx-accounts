@@ -1,13 +1,16 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-
+import { Redirect } from 'react-router-dom';
 import Spinner from '../Spinner';
 
 
-const Header = observer(({ store }) => {
+const Header = observer(({ store, history, match, location }) => {
 
 	const fetchUser = () => store.fetchUser();
-	const logout = () => store.logout();
+	const logout = () => {
+		store.logout();
+		history.push('/');
+	}
 
 	return (
 		<div>
@@ -22,6 +25,7 @@ const Header = observer(({ store }) => {
 				</div>
 			</div>
 			{ store.isLoading ? <Spinner /> : null }
+			{ store.items.length > 0 && !store.isLoading && <Redirect to={`${ store.user.id }/accounts`} /> }
 		</div>
 	);
 });
