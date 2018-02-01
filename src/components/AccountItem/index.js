@@ -1,8 +1,6 @@
 import React from 'react';
 
-
-const AccountItem = ({ item }) => {
-
+const AccountItem = ({ item }) => {	
 	return (
 		<div className='item__table'>
 			<table className='item__table-table'>
@@ -10,7 +8,7 @@ const AccountItem = ({ item }) => {
 					<tr>
 						<th>Name</th>
 						<th>Number</th>
-						<th>Amount</th>						
+						<th>Amount</th>
 						<th>Char</th>
 					</tr>
 				</thead>
